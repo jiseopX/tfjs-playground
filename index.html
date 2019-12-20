@@ -1,6 +1,8 @@
 <html>
   <head>
     <h1>TF.js tester</h1>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
   </head>
 
   <body>
@@ -26,6 +28,10 @@
           style="width: 640; height: 360;"
         ></canvas>
       </div>
+    </div>
+    <div class="slidecontainer">
+      <input type="range" min="0" max="100" value="70" class="slider" id="filter-alpha">
+      <p id="alpha-meter"></p>
     </div>
 
     <script type="text/javascript" src="dist/bundle.js"></script>

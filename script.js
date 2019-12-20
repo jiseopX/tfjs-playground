@@ -6,6 +6,8 @@ import createShader from 'gl-shader'
 import FragmentShader from './shader.frag';
 import VertexShader from './shader.vert';
 
+var lightOverlay = 'light_overlay.png'
+var filterAlpha = 70
 
 const stats = new Stats();
 document.body.appendChild(stats.dom);
@@ -20,15 +22,25 @@ const detectorOptions = new faceapi.TinyFaceDetectorOptions();
 var displaySize;
 
 const main = async () => {
+  var slider = document.getElementById("filter-alpha");
+  var output = document.getElementById("alpha-meter");
+  output.innerHTML = slider.value;
+
+  slider.oninput = function () {
+    filterAlpha = this.value
+    output.innerHTML = `alpha : ${filterAlpha}`
+  }
   await faceapi.loadTinyFaceDetectorModel("models");
   displaySize = { width: video.width, height: video.height };
   video.addEventListener("loadeddata", onLoadedData);
 };
 
 const onLoadedData = () => {
-  const videoTexture = initTexture(gl, 0);
-  video.play();
-  requestAnimationFrame(animate);
+  initTexture(gl, 0);
+  getImage().then(() => {
+    video.play();
+    requestAnimationFrame(animate);
+  })
 };
 
 const animate = async () => {
@@ -51,9 +63,9 @@ const animate = async () => {
 
 function render() {
   shader.bind()
-  // shader.uniforms.uLookup = 1
+  shader.uniforms.lightTexture = 1
   shader.uniforms.uTexture = 0
-  shader.uniforms.filterAlpha = 1
+  shader.uniforms.filterAlpha = filterAlpha / 100
   Triangle(gl)
 }
 
@@ -80,6 +92,19 @@ function updateTexture(gl, screen) {
 function bindTexture(gl, texture, unit) {
   gl.activeTexture(gl.TEXTURE0 + unit)
   gl.bindTexture(gl.TEXTURE_2D, texture)
+}
+
+function getImage() {
+  return new Promise(resolve => {
+    var image = new Image()
+    image.src = lightOverlay
+    image.onload = () => {
+      initTexture(gl, 1)
+      updateTexture(gl, image)
+      gl.activeTexture(gl.TEXTURE0)
+      resolve()
+    }
+  })
 }
 
 main();
