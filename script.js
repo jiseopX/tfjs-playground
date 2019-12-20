@@ -29,7 +29,7 @@ const animate = async () => {
   const detection = await faceapi.detectSingleFace(video, detectorOptions);
   if (detection) {
     const resizedDetection = faceapi.resizeResults(detection, displaySize);
-    ContextReplacementPlugin.clearRect(0, 0, canvas.width, canvas.height);
+    canvas2d.clearRect(0, 0, canvas.width, canvas.height);
     faceapi.draw.drawDetections(canvas, resizedDetection);
   }
   stats.end();
