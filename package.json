@@ -1,14 +1,16 @@
 {
   "dependencies": {
+    "@tensorflow/tfjs": "^1.4.0",
     "a-big-triangle": "^1.0.3",
+    "face-api.js": "^0.22.0",
+    "fs": "^0.0.1-security",
     "gl-shader": "^4.2.1",
     "glsl-blend": "^1.0.3",
     "glslify": "^7.0.0",
+    "module": "^1.2.5",
     "raw-loader": "^3.1.0",
     "stats.js": "^0.17.0",
-    "webpack": "^4.41.0",
-    "@tensorflow/tfjs": "^1.4.0",
-    "face-api.js": "^0.22.0"
+    "webpack": "^4.41.0"
   },
   "scripts": {
     "start": "webpack --devtool source-map ./script.js --config webpack.config.js && node server.js"

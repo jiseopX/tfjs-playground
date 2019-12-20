@@ -1,0 +1,6 @@
+{
+  "debug.node.autoAttach": "off",
+  "editor.formatOnSave": true,
+  "eslint.enable": false,
+  "editor.defaultFormatter": "vscode.typescript-language-features"
+}

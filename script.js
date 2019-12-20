@@ -1,7 +1,6 @@
 import "@tensorflow/tfjs";
 import * as faceapi from "face-api.js";
 import Stats from "stats.js";
-import { ContextReplacementPlugin } from "webpack";
 
 const stats = new Stats();
 document.body.appendChild(stats.dom);
