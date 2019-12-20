@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <h1>TF.js tester</h1>
+  </head>
+
+  <body>
+    <input type="button" value="play" id="play" />
+    <input type="button" value="pause" id="pause" />
+
+    <div style="flex-direction: row; display: flex;">
+      <div>
+        <h3>original</h3>
+        <video
+          crossorigin="anonymous"
+          id="video"
+          src="newtuber.mp4"
+          width="640px"
+          height="360px"
+          controls
+          preload="none"
+        ></video>
+      </div>
+      <div>
+        <h3>detected</h3>
+        <canvas
+          id="canvas"
+          width="960px"
+          height="540px"
+          style="width: 640; height: 360;"
+        ></canvas>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="dist/bundle.js"></script>
+  </body>
+</html>
