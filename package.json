@@ -4,6 +4,7 @@
     "a-big-triangle": "^1.0.3",
     "face-api.js": "^0.22.0",
     "gl-shader": "^4.2.1",
+    "raw-loader": "^4.0.0",
     "stats.js": "^0.17.0",
     "webpack": "^4.41.0"
   },
