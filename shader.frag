@@ -20,6 +20,6 @@ void main() {
     vec2 center = 2.0*vec2((left+right)/2.0,(top+bottom)/2.0)-1.0;
     vec2 relativePoint = clamp(vUv-center,-1.0,1.0);
 	vec4 lightColor = texture2D(lightTexture, relativePoint);
-    vec4 color = mix(textureColor,white,lightColor[3]*filterAlpha);
+    vec4 color = mix(textureColor,white,lightColor[3]*filterAlpha/2.0);
 	gl_FragColor =color;
 }

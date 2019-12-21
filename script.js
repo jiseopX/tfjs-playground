@@ -6,7 +6,7 @@ import createShader from 'gl-shader'
 import FragmentShader from './shader.frag';
 import VertexShader from './shader.vert';
 
-var lightOverlay = 'light_overlay.png'
+var lightOverlay = 'light_overlay_v2.png'
 var filterAlpha = 70
 
 const stats = new Stats();
