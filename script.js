@@ -15,6 +15,8 @@ document.body.appendChild(stats.dom);
 const video = document.getElementById("video");
 const canvas = document.getElementById("canvas");
 const gl = canvas.getContext('webgl')
+const dpr = window.devicePixelRatio;
+gl.viewport(0, 0, video.width * dpr, video.height * dpr);
 const shader = createShader(gl,
   VertexShader, FragmentShader
 )
@@ -73,8 +75,8 @@ function render() {
 function initTexture(gl, unit) {
   const texture = gl.createTexture();
   bindTexture(gl, texture, unit)
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_BORDER);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_BORDER);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR)
   return texture;
