@@ -15,13 +15,10 @@ varying vec2 vUv;
 
 
 void main() {
-	vec4 color = texture2D(lightTexture, vUv);
-    vec4 blue=vec4(0,0,1,1);
-    vec4 segmentColor;
-    vec2 center = vec2((left+right)/2.0,(top+bottom)/2.0);
-    float distanceCenter;
-        distanceCenter= distance(center,vUv);
-    
-    segmentColor=min(color*(1.0+pow(1.0-distanceCenter,4.0)*filterAlpha/4.0),vec4(1.0,1.0,1.0,1.0));
-	gl_FragColor =vec4(1.0) -color;
+    vec4 textureColor = texture2D(uTexture, vUv);
+    vec2 center = 2.0*vec2((left+right)/2.0,(top+bottom)/2.0)-1.0;
+    vec2 relativePoint = clamp(vUv-center,-1.0,1.0);
+	vec4 lightColor = texture2D(lightTexture, relativePoint);
+    vec4 color = mix(textureColor,lightColor,filterAlpha);
+	gl_FragColor =color;
 }
